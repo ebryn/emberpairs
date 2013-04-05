@@ -27,9 +27,7 @@ App.Person = Ember.Object.extend({
   },
 
   save: function() {
-    $.post("/api/people", {person: this.toJSON()}).then(function(data) {
-      debugger;
-    });
+    return $.post("/api/people", {person: this.toJSON()});
   }
 });
 
