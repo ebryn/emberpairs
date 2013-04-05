@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="large-8 columns">
+    <h1>Ember Pairs</h1>
+    <table>
+      <thead>
+        <tr><th width="250">Name</th><th width="150">Twitter</th></tr>
+      </thead>
+      <tbody>
+        {{#each controller}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{twitter}}</td>
+          </tr>
+        {{else}}
+          <tr><td colspan="2">Nobody has signed up yet! :(</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-8 columns">
+    <h2>Add yourself!</h2>
+    <div class="row">
+      <div class="large-4 columns">
+        <label>Name</label>
+        {{view Ember.TextField valueBinding="newPerson.name"}}
+        <label>Twitter</label>
+        {{view Ember.TextField valueBinding="newPerson.twitter"}}
+
+      </div>
+      <div class="large-4 columns">
+      </div>
+    </div>
+  <button class="small" {{action submit}}>Save</button>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 100px">
+  <div class="large-10 columns">
+    <h6>
+      Ember Pairs is a little experiment by <a href="http://erikbryn.com">Erik Bryn</a> (<a href="http://twitter.com/ebryn">@ebryn</a>). Inspired by <a href="http://twitter.com/avdi">@avdi</a> and #pairwithme.
+    </h6>
+  </div>
+</div>
+
+<a href="https://github.com/ebryn/emberpairs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>

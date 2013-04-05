@@ -11,5 +11,53 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
+//= require handlebars.runtime
+//= require ember
+//= require_self
 //= require_tree .
+
+App = Ember.Application.create()
+
+App.Person = Ember.Object.extend({
+  name: null,
+  twitter: null,
+
+  toJSON: function() {
+    return this.getProperties('name', 'twitter');
+  },
+
+  save: function() {
+    $.post("/api/people", {person: this.toJSON()}).then(function(data) {
+      debugger;
+    });
+  }
+});
+
+App.Person.find = function() {
+  var people = Ember.ArrayProxy.create({content: [], isLoaded: false});
+  $.getJSON("/api/people.json").then(function(data) {
+    people.set('content', data.people);
+    people.set('isLoaded', true);
+  });
+  return people;
+};
+
+App.ApplicationRoute = Ember.Route.extend({
+  model: function() {
+    return App.Person.find();
+  }
+});
+
+App.ApplicationController = Ember.ArrayController.extend({
+  init: function() {
+    this._super();
+    this.set('newPerson', App.Person.create());
+  },
+
+  submit: function() {
+    var newPerson = this.get('newPerson');
+    newPerson.save();
+    this.get('content').pushObject(newPerson);
+    this.set('newPerson', App.Person.create());
+  }
+});
