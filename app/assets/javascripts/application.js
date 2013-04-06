@@ -23,6 +23,10 @@ App.Person = Ember.Object.extend({
   twitter: null,
   github: null,
 
+  twitterUrl: (function() {
+    return "//twitter.com/" + this.get('twitter');
+  }).property('twitter'),
+
   toJSON: function() {
     return this.getProperties('name', 'twitter', 'github');
   },

@@ -14,7 +14,7 @@
         {{#each controller}}
           <tr>
             <td>{{name}}</td>
-            <td>{{twitter}}</td>
+            <td><a {{bindAttr href="twitterUrl"}}>@{{twitter}}</a></td>
             <td>{{github}}</td>
             <td>{{location}}</td>
           </tr>
