@@ -3,13 +3,20 @@
     <h1>Ember Pairs</h1>
     <table>
       <thead>
-        <tr><th width="250">Name</th><th width="150">Twitter</th></tr>
+        <tr>
+          <th width="250">Name</th>
+          <th width="150">Twitter</th>
+          <th width="150">GitHub</th>
+          <th width="200">Location</th>
+        </tr>
       </thead>
       <tbody>
         {{#each controller}}
           <tr>
             <td>{{name}}</td>
             <td>{{twitter}}</td>
+            <td>{{github}}</td>
+            <td>{{location}}</td>
           </tr>
         {{else}}
           <tr><td colspan="2">Nobody has signed up yet! :(</td></tr>
@@ -24,16 +31,22 @@
     <h2>Add yourself!</h2>
     <div class="row">
       <div class="large-4 columns">
-        <label>Name</label>
-        {{view Ember.TextField valueBinding="newPerson.name"}}
-        <label>Twitter</label>
-        {{view Ember.TextField valueBinding="newPerson.twitter"}}
+        {{#if user}}
+          <label>Name</label>
+          {{view Ember.TextField valueBinding="user.name"}}
 
-      </div>
-      <div class="large-4 columns">
+          <button class="small" {{action submit}}>Save</button>
+        {{else}}
+          <a class="btn-auth btn-github" href="/auth/github">
+            Sign in with <b>GitHub</b>
+          </a>
+          <br><br>
+          <a class="btn-auth btn-twitter" href="/auth/twitter">
+            Sign in with <b>Twitter</b>
+          </a>
+        {{/if}}
       </div>
     </div>
-  <button class="small" {{action submit}}>Save</button>
   </div>
 </div>
 

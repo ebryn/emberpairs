@@ -21,9 +21,10 @@ App = Ember.Application.create()
 App.Person = Ember.Object.extend({
   name: null,
   twitter: null,
+  github: null,
 
   toJSON: function() {
-    return this.getProperties('name', 'twitter');
+    return this.getProperties('name', 'twitter', 'github');
   },
 
   save: function() {
@@ -49,13 +50,15 @@ App.ApplicationRoute = Ember.Route.extend({
 App.ApplicationController = Ember.ArrayController.extend({
   init: function() {
     this._super();
-    this.set('newPerson', App.Person.create());
+    if (window.GITHUB_INFO) {
+      this.set('user', App.Person.create(window.GITHUB_INFO));
+    }
   },
 
   submit: function() {
-    var newPerson = this.get('newPerson');
-    newPerson.save();
-    this.get('content').pushObject(newPerson);
-    this.set('newPerson', App.Person.create());
+    var user = this.get('user');
+    user.save();
+    this.get('content').pushObject(user);
+    this.set('user', null);
   }
 });

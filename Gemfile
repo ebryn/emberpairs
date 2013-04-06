@@ -5,6 +5,8 @@ gem 'rails', '3.2.13.rc1'
 gem 'pg'
 gem 'unicorn'
 gem "newrelic_rpm", "~> 3.5.7.57.beta"
+gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
+gem 'omniauth-twitter', :git => 'git://github.com/arunagw/omniauth-twitter.git'
 
 gem 'jquery-rails'
 gem 'ember-rails'
@@ -21,4 +23,5 @@ end
 
 group :development, :test do
   gem 'qunit-rails'
+  gem 'debugger'
 end

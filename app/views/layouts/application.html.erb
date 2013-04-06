@@ -3,6 +3,10 @@
 <head>
   <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
   <title>Ember Pairs</title>
+  <script>
+    var USER_INFO = <%= raw session[:user_info].to_json %>;
+  </script>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

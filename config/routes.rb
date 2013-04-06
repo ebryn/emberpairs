@@ -4,5 +4,7 @@ Emberpairs::Application.routes.draw do
     post 'people' => 'people#create'
   end
 
+  match '/auth/:provider/callback' => 'sessions#create'
+
   root :to => 'application#index'
 end
